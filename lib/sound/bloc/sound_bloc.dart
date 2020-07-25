@@ -17,7 +17,7 @@ class SoundBloc extends Bloc {
     submitPipe.dispose();
   }
 
-  SoundBloc({SoundService SoundService}) {
+  SoundBloc({SoundService soundService}) {
     _soundUseCase =
         SoundUseCase((viewModel) => soundViewModelPipe.send(viewModel));
 
