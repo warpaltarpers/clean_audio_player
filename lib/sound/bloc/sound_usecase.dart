@@ -4,6 +4,7 @@ import 'sound_adapter.dart';
 import '../../sound_locator.dart';
 import '../model/sound_entity.dart';
 import '../model/sound_view_model.dart';
+import 'package:audioplayer/audioplayer.dart';
 
 class SoundUseCase extends UseCase {
   Function(ViewModel) _viewModelCallBack;
@@ -35,16 +36,13 @@ class SoundUseCase extends UseCase {
     SoundLocator().repository.update<SoundEntity>(_scope, updatedEntity);
     _viewModelCallBack(buildViewModelForLocalUpdate(updatedEntity));
   }
-  
+
   void submit() async {
     final entity = SoundLocator().repository.get<SoundEntity>(_scope);
     if (entity.soundUrl == '') {
       _viewModelCallBack(buildViewModelForLocalUpdateWithError(entity));
     } else {
-      await SoundLocator()
-          .repository
-          .runServiceAdapter(_scope, SoundAdapter());
-      //TODO: Potentially add AudioPlayer here
+      await SoundLocator().repository.runServiceAdapter(_scope, SoundAdapter());
     }
   }
 
@@ -55,23 +53,19 @@ class SoundUseCase extends UseCase {
   SoundViewModel buildViewModelForServiceUpdate(SoundEntity entity) {
     if (entity.hasErrors()) {
       return SoundViewModel(
-          soundUrl: entity.soundUrl,
-          serviceStatus: ServiceStatus.failed);
+          soundUrl: entity.soundUrl, serviceStatus: ServiceStatus.failed);
     } else {
       return SoundViewModel(
-          soundUrl: entity.soundUrl,
-          serviceStatus: ServiceStatus.successful);
+          soundUrl: entity.soundUrl, serviceStatus: ServiceStatus.successful);
     }
   }
 
   SoundViewModel buildViewModelForLocalUpdate(SoundEntity entity) {
-    return SoundViewModel(
-        soundUrl: entity.soundUrl);
+    return SoundViewModel(soundUrl: entity.soundUrl);
   }
 
   SoundViewModel buildViewModelForLocalUpdateWithError(SoundEntity entity) {
     return SoundViewModel(
-        soundUrl: entity.soundUrl,
-        dataStatus: DataStatus.invalid);
+        soundUrl: entity.soundUrl, dataStatus: DataStatus.invalid);
   }
 }
