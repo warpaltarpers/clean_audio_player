@@ -20,5 +20,4 @@ class SoundBloc extends Bloc {
   void playHandler() {
     audioPlugin.play(url);
   }
-  
 }
