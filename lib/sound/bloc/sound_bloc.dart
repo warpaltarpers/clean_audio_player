@@ -9,11 +9,13 @@ class SoundBloc extends Bloc {
 
   final soundViewModelPipe = Pipe<SoundViewModel>();
   final soundUrlPipe = Pipe<String>();
+  final submitPipe = EventPipe();
 
   @override
   void dispose() {
     soundViewModelPipe.dispose();
     soundUrlPipe.dispose();
+    submitPipe.dispose();
   }
 
   SoundBloc({SoundService SoundService}) {
@@ -21,9 +23,14 @@ class SoundBloc extends Bloc {
     
     soundViewModelPipe.onListen(() => _soundUseCase.create());
     soundUrlPipe.receive.listen(soundUrlInputHandler);
+    submitPipe.listen(submitHandler);
   }
 
   void soundUrlInputHandler(String soundUrl) {
     _soundUseCase.playSound(soundUrl);
+  }
+  
+  void submitHandler() {
+    _soundUseCase.submit();
   }
 }

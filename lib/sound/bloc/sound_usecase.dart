@@ -1,5 +1,6 @@
 import 'package:clean_framework/clean_framework.dart';
 import 'package:clean_framework/clean_framework_defaults.dart';
+import 'sound_adapter.dart';
 import '../../sound_locator.dart';
 import '../model/sound_entity.dart';
 import '../model/sound_view_model.dart';
@@ -33,6 +34,18 @@ class SoundUseCase extends UseCase {
     final updatedEntity = entity.merge(soundUrl: soundUrl);
     SoundLocator().repository.update<SoundEntity>(_scope, updatedEntity);
     _viewModelCallBack(buildViewModelForLocalUpdate(updatedEntity));
+  }
+  
+  void submit() async {
+    final entity = SoundLocator().repository.get<SoundEntity>(_scope);
+    if (entity.soundUrl == '') {
+      _viewModelCallBack(buildViewModelForLocalUpdateWithError(entity));
+    } else {
+      await SoundLocator()
+          .repository
+          .runServiceAdapter(_scope, SoundAdapter());
+      //TODO: Potentially add AudioPlayer here
+    }
   }
 
   void _notifySubscribers(entity) {
