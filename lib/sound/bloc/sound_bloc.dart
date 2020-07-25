@@ -1,7 +1,7 @@
 import 'package:clean_framework/clean_framework.dart';
 import '../api/sound_api.dart';
 import 'sound_usecase.dart';
-import 'package:clean_framework_example/payment/model/payment_view_model.dart'; //TODO: Build file
+import '../model/sound_view_model.dart';
 
 class SoundBloc extends Bloc {
   SoundUseCase _soundUseCase;
@@ -23,7 +23,7 @@ class SoundBloc extends Bloc {
     soundUrlPipe.receive.listen(soundUrlInputHandler);
   }
 
-  void amountInputHandler(String soundUrl) {
+  void soundUrlInputHandler(String soundUrl) {
     _soundUseCase.playSound(soundUrl);
   }
 }
