@@ -7,10 +7,7 @@ class SoundScreen extends Screen {
   final Function onChangeSoundUrl;
   final VoidCallback onTapSubmit;
 
-  SoundScreen(
-      {this.viewModel,
-      this.onChangeSoundUrl,
-      this.onTapSubmit});
+  SoundScreen({this.viewModel, this.onChangeSoundUrl, this.onTapSubmit});
 
   @override
   Widget build(BuildContext context) {
@@ -18,8 +15,8 @@ class SoundScreen extends Screen {
       appBar: AppBar(
         title: Text('Sample App'),
       ),
-      body: SingleChildScrollView(
-        child: Row(
+      body: Center(
+        child: Column(
           mainAxisSize: MainAxisSize.min,
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.center,
@@ -32,13 +29,15 @@ class SoundScreen extends Screen {
                 onChangeSoundUrl(value);
               },
             ),
+            const SizedBox(
+              height: 30,
+            ),
             RaisedButton.icon(
-              icon: Icon(Icons.play_arrow),
-              label: Text('Submit'),
-              onPressed: () {
-                onTapSubmit();
-              }
-            )
+                icon: Icon(Icons.play_arrow),
+                label: Text('Submit'),
+                onPressed: () {
+                  onTapSubmit();
+                })
           ],
         ),
       ),
@@ -81,7 +80,7 @@ class _TextFieldListTile extends ListTile {
     return Column(
       children: <Widget>[
         Container(
-          padding: EdgeInsets.fromLTRB(8.0, 0.0, 8.0, 0.0),
+          padding: EdgeInsets.fromLTRB(15.0, 0.0, 15.0, 0.0),
           child: Row(
             mainAxisSize: MainAxisSize.max,
             children: <Widget>[
@@ -94,7 +93,7 @@ class _TextFieldListTile extends ListTile {
                 ),
               ),
               Expanded(
-                flex: 3,
+                flex: 4,
                 child: Container(child: _buildContentField(context)),
               )
             ],

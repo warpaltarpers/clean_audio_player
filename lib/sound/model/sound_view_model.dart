@@ -11,6 +11,5 @@ class SoundViewModel extends ViewModel {
   SoundViewModel(
       {this.soundUrl,
       this.serviceStatus = ServiceStatus.unknown,
-      this.dataStatus = DataStatus.unknown})
-      : assert(soundUrl != null);
+      this.dataStatus = DataStatus.unknown});
 }
