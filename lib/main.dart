@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
-import 'sound/ui/main_screen.dart';
+import 'sound/ui/sound_screen.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
   runApp(
     MaterialApp(
-      home: MainScreen(),
+      home: SoundScreen(),
     ),
   );
 }
