@@ -4,8 +4,8 @@ import '../api/sound_request_model.dart';
 import '../api/sound_response_model.dart';
 import '../model/sound_entity.dart';
 
-class SoundAdapter extends ServiceAdapter<SoundEntity,
-    SoundRequestModel, SoundResponseModel, SoundService> {
+class SoundAdapter extends ServiceAdapter<SoundEntity, SoundRequestModel,
+    SoundResponseModel, SoundService> {
   SoundAdapter() : super(SoundService());
 
   @override
@@ -17,6 +17,7 @@ class SoundAdapter extends ServiceAdapter<SoundEntity,
   @override
   SoundRequestModel createRequest(SoundEntity entity) {
     return SoundRequestModel(
-        url: entity.soundUrl,);
+      soundUrl: entity.soundUrl,
+    );
   }
 }
