@@ -1,6 +1,5 @@
 import 'package:clean_framework/clean_framework.dart';
 import 'package:clean_framework/clean_framework_defaults.dart';
-import 'sound_adapter.dart';
 import '../../sound_locator.dart';
 import '../model/sound_entity.dart';
 import '../model/sound_view_model.dart';
@@ -44,8 +43,12 @@ class SoundUseCase extends UseCase {
     if (entity.soundUrl == '') {
       _viewModelCallBack(buildViewModelForLocalUpdateWithError(entity));
     } else {
-      await player.play(entity.soundUrl);
+      await play(entity.soundUrl);
     }
+  }
+
+  void play(String soundUrl) {
+    player.play(soundUrl);
   }
 
   void _notifySubscribers(entity) {

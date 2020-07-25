@@ -5,7 +5,6 @@ import '../model/sound_view_model.dart';
 
 class SoundBloc extends Bloc {
   SoundUseCase _soundUseCase;
-  final url = 'https://s3.amazonaws.com/media.sampleapp.hunt/bell.wav';
 
   final soundViewModelPipe = Pipe<SoundViewModel>();
   final soundUrlPipe = Pipe<String>();

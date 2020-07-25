@@ -26,8 +26,8 @@ class SoundPresenter extends Presenter<SoundBloc, SoundViewModel, SoundScreen> {
     );
   }
 
-  void _onChangeSoundUrl(String text, SoundBloc bloc) {
-    bloc.soundUrlPipe.send(text);
+  void _onChangeSoundUrl(String soundUrl, SoundBloc bloc) {
+    bloc.soundUrlPipe.send(soundUrl);
   }
 
   void _onTapSubmit(SoundBloc bloc) {
