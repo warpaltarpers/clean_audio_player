@@ -19,17 +19,18 @@ class SoundBloc extends Bloc {
   }
 
   SoundBloc({SoundService SoundService}) {
-    _soundUseCase = SoundUseCase((viewModel) => soundViewModelPipe.send(viewModel));
-    
+    _soundUseCase =
+        SoundUseCase((viewModel) => soundViewModelPipe.send(viewModel));
+
     soundViewModelPipe.onListen(() => _soundUseCase.create());
     soundUrlPipe.receive.listen(soundUrlInputHandler);
     submitPipe.listen(submitHandler);
   }
 
   void soundUrlInputHandler(String soundUrl) {
-    _soundUseCase.playSound(soundUrl);
+    _soundUseCase.updateSoundUrl(soundUrl);
   }
-  
+
   void submitHandler() {
     _soundUseCase.submit();
   }
