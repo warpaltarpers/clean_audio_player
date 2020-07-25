@@ -13,7 +13,7 @@ class SoundScreen extends Screen {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Sample App'),
+        title: Text('Sample clean_framework App'),
       ),
       body: Center(
         child: Column(
