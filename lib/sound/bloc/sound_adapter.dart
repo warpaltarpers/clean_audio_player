@@ -2,7 +2,7 @@ import 'package:clean_framework/clean_framework.dart';
 import '../api/sound_api.dart';
 import '../api/sound_request_model.dart';
 import '../api/sound_response_model.dart';
-import 'package:clean_framework_example/payment/model/payment_entity.dart'; //TODO: Build file
+import '../model/sound_entity.dart';
 
 class SoundAdapter extends ServiceAdapter<SoundEntity,
     SoundRequestModel, SoundResponseModel, SoundService> {

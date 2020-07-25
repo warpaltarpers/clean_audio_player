@@ -1,9 +1,8 @@
 import 'package:clean_framework/clean_framework.dart';
 import 'package:clean_framework/clean_framework_defaults.dart';
 import '../../sound_locator.dart';
-import 'sound_adapter.dart';
-import 'package:clean_framework_example/payment/model/payment_entity.dart'; //TODO: Build File
-import 'package:clean_framework_example/payment/model/payment_view_model.dart'; //TODO: Build File
+import '../model/sound_entity.dart';
+import '../model/sound_view_model.dart';
 
 class SoundUseCase extends UseCase {
   Function(ViewModel) _viewModelCallBack;
@@ -43,23 +42,23 @@ class SoundUseCase extends UseCase {
   SoundViewModel buildViewModelForServiceUpdate(SoundEntity entity) {
     if (entity.hasErrors()) {
       return SoundViewModel(
-          url: entity.soundUrl,
+          soundUrl: entity.soundUrl,
           serviceStatus: ServiceStatus.failed);
     } else {
       return SoundViewModel(
-          url: entity.soundUrl,
+          soundUrl: entity.soundUrl,
           serviceStatus: ServiceStatus.successful);
     }
   }
 
   SoundViewModel buildViewModelForLocalUpdate(SoundEntity entity) {
     return SoundViewModel(
-        url: entity.soundUrl);
+        soundUrl: entity.soundUrl);
   }
 
   SoundViewModel buildViewModelForLocalUpdateWithError(SoundEntity entity) {
     return SoundViewModel(
-        url: entity.soundUrl,
+        soundUrl: entity.soundUrl,
         dataStatus: DataStatus.invalid);
   }
 }
