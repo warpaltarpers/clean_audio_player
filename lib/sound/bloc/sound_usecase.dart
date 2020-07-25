@@ -11,6 +11,8 @@ class SoundUseCase extends UseCase {
 
   RepositoryScope _scope;
 
+  AudioPlayer player = new AudioPlayer();
+
   SoundUseCase(Function(ViewModel) viewModelCallBack)
       : assert(viewModelCallBack != null),
         _viewModelCallBack = viewModelCallBack;
@@ -29,7 +31,7 @@ class SoundUseCase extends UseCase {
     _viewModelCallBack(buildViewModelForLocalUpdate(entity));
   }
 
-  void playSound(String soundUrl) async {
+  void updateSoundUrl(String soundUrl) async {
     final entity = SoundLocator().repository.get<SoundEntity>(_scope);
 
     final updatedEntity = entity.merge(soundUrl: soundUrl);
@@ -42,7 +44,7 @@ class SoundUseCase extends UseCase {
     if (entity.soundUrl == '') {
       _viewModelCallBack(buildViewModelForLocalUpdateWithError(entity));
     } else {
-      await SoundLocator().repository.runServiceAdapter(_scope, SoundAdapter());
+      await player.play(entity.soundUrl);
     }
   }
 
