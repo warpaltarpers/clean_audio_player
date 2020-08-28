@@ -21,7 +21,7 @@ class SoundScreen extends Screen {
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: <Widget>[
-            _TextFieldListTile(
+            TextFieldListTile(
               type: 'text',
               textTitle: 'Sound URL',
               text: viewModel.soundUrl,
@@ -45,13 +45,14 @@ class SoundScreen extends Screen {
   }
 }
 
-class _TextFieldListTile extends ListTile {
+@visibleForTesting
+class TextFieldListTile extends ListTile {
   final String textTitle;
   final String type;
   final String text;
   final Function onChangeTextField;
 
-  _TextFieldListTile({
+  TextFieldListTile({
     this.textTitle,
     this.type,
     this.text,
