@@ -16,15 +16,7 @@ void main() {
       
       expect(find.byType(AppBar), findsOneWidget);
       expect(find.byType(TextFieldListTile), findsOneWidget);
-      expect(find.byType(RaisedButton), findsOneWidget);
-    });
-    
-    testWidgets('Text displays correctly', (WidgetTester tester) async {
-      await tester.pumpWidget(testWidget);
-      await tester.pump(Duration(milliseconds: 200));
-      
-      expect(find.text('Sample clean_framework app'), findsOneWidget);
-      expect(find.text('Sound URL'), findsOneWidget);
+      expect(find.byIcon(Icons.play_arrow), findsOneWidget);
     });
   });
 }
