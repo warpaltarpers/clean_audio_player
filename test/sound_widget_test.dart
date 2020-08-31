@@ -16,4 +16,11 @@ void main() {
     expect(find.byType(TextFieldListTile), findsOneWidget);
     expect(find.byIcon(Icons.play_arrow), findsOneWidget);
   });
+  
+  testWidgets('AppBar text found', (WidgetTester tester) async {
+    await tester.pumpWidget(testWidget);
+    await tester.pump(Duration(milliseconds: 200));
+    
+    expect(find.widgetWithText(AppBar, 'Sample clean_framework App'), findsOneWidget);
+  });
 }
